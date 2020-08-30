@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text, Dimensions} from 'react-native';
 import {DrawerContentComponentProps, DrawerContentOptions } from '@react-navigation/drawer';
 import {Feather as Icon} from '@expo/vector-icons'
+import {useNavigation, DrawerActions} from '@react-navigation/native'
 
 import DrawerItem, {itemType} from './DrawerItem';
 import colors from '../../constants/colors';
@@ -32,13 +33,14 @@ const navItems: itemType[] = [
 ]
 
 const DrawerContent = (props: DrawerContentComponentProps<DrawerContentOptions>) => {
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerContent}>
-                    <Icon name="x" size={25} color={"white"}/>
+                    <Icon name="x" size={25} color={"white"} onPress={() => navigation.dispatch(DrawerActions.closeDrawer())}/>
                     <Text style={{color: "white"}}>My Profile</Text>
-                    <Icon name="shopping-cart" size={25} color={"white"}/>
+                    <Icon name="shopping-bag" size={25} color={"white"}/>
 
                 </View>
             </View>

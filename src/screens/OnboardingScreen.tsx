@@ -56,9 +56,9 @@ const OnboardingScreen = ({navigation}: OnboardingScreenProps) => {
                     onScroll={Animated.event(
                         [{nativeEvent: {contentOffset: {x: captionScrollX}}}],
                         {listener: (event: any) => { 
-                            if(footerRef.current){
-                                footerRef.current.scrollTo({x: event.nativeEvent.contentOffset.x, animated: true})
-                            }
+                            // if(footerRef.current){
+                            //     footerRef.current.scrollTo({x: event.nativeEvent.contentOffset.x, animated: true})
+                            // }
                         }, useNativeDriver:  false }
                     )}
                 >
@@ -86,15 +86,13 @@ const OnboardingScreen = ({navigation}: OnboardingScreenProps) => {
             <View style={styles.footer}>
                 <Animated.View style={[{ ...StyleSheet.absoluteFillObject }, {backgroundColor}]} />
                 <View style={styles.footerContainer}>
-                    <Animated.ScrollView
-                         horizontal
-                         showsHorizontalScrollIndicator={false}
-                         decelerationRate="fast"
-                         snapToInterval={WIDTH}
-                         scrollEnabled={false}
-                         ref={footerRef}
+                    <Animated.View
                          style={{
-                             
+                             flex: 1,
+                             flexDirection: "row",
+                             transform: [
+                                 {translateX: Animated.multiply(captionScrollX, -1)}
+                             ]
                          }}
                     >
                     {data.map((item, i) => {
@@ -108,7 +106,7 @@ const OnboardingScreen = ({navigation}: OnboardingScreenProps) => {
                             </View>
                         )
                     })}
-                    </Animated.ScrollView>
+                    </Animated.View>
                     <View style={styles.dotsContainer}>
                         {data.map((item, i) => {
                             const currentIndex = Animated.divide(captionScrollX, WIDTH)

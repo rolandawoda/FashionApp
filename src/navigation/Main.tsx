@@ -3,7 +3,7 @@ import {Dimensions} from 'react-native';
 import { createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerContent from './components/DrawerContent'
 
-import TestScreen from '../screens/TestScreen';
+import HomeScreen from '../screens/Home';
 
 const {width} = Dimensions.get('window')
 const DRAWER_WIDTH = width * 0.7
@@ -19,7 +19,7 @@ const MainNavigator = () => {
         }}
         drawerContent={(props) => <DrawerContent {...props}/>} 
       >
-        <MainDrawer.Screen name="Home" component={TestScreen} />
+        <MainDrawer.Screen name="Home" component={HomeScreen} />
       </MainDrawer.Navigator>
   );
 }

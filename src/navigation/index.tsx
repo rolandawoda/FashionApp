@@ -16,7 +16,7 @@ const AppRootStack = createStackNavigator<RootRoutes>()
 const RootNavigator = () => {
     return (
         <NavigationContainer>
-            <AppRootStack.Navigator headerMode="none">
+            <AppRootStack.Navigator headerMode="none" initialRouteName="Home">
                 <AppRootStack.Screen name="Onboarding" component={OnBoardingNavigator} />
                 <AppRootStack.Screen name="Home" component={MainNavigator} />
             </AppRootStack.Navigator>
