@@ -4,11 +4,17 @@ import { createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerContent from './components/DrawerContent'
 
 import HomeScreen from '../screens/Home';
+import FavouritesScreen from '../screens/Favourites';
 
 const {width} = Dimensions.get('window')
-const DRAWER_WIDTH = width * 0.7
+const DRAWER_WIDTH = width * 0.7;
 
-const MainDrawer = createDrawerNavigator();
+export type MainNavigatorRoutes = {
+    OutfitIdeas: undefined,
+    FavouriteOutfits: undefined
+}
+
+const MainDrawer = createDrawerNavigator<MainNavigatorRoutes>();
 
 
 const MainNavigator = () => {
@@ -19,7 +25,8 @@ const MainNavigator = () => {
         }}
         drawerContent={(props) => <DrawerContent {...props}/>} 
       >
-        <MainDrawer.Screen name="Home" component={HomeScreen} />
+        <MainDrawer.Screen name="FavouriteOutfits" component={FavouritesScreen} />
+        <MainDrawer.Screen name="OutfitIdeas" component={HomeScreen} />
       </MainDrawer.Navigator>
   );
 }

@@ -72,10 +72,14 @@ const Card = ({length, color, value, onSwipe} : CardProps) => {
         inputRange: [1 - length, 0],
         outputRange: [0.9, 1]
     })
+    const backgroundColor = value.interpolate({
+        inputRange: [1 - length, 0],
+        outputRange: ["#74BCB8","#C9E9E7"]
+    })
      
     return (
         <View style={styles.card}>
-            <Animated.View style={[styles.del, {backgroundColor: color, transform: [{translateY }, {scale}], ...pan.getLayout()}]}
+            <Animated.View style={[styles.del, {backgroundColor, transform: [{translateY }, {scale}], ...pan.getLayout()}]}
                 {...panResponder.panHandlers}
             />
         </View>

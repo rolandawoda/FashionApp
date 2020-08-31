@@ -1,9 +1,15 @@
 import React, {useState, useRef} from 'react';
-import {View, StyleSheet, Text, Dimensions, Animated} from 'react-native';
-import {Feather as Icon} from '@expo/vector-icons'
+import {View, StyleSheet, Text, Dimensions, Animated, ScrollView} from 'react-native';
+import {Feather as Icon} from '@expo/vector-icons';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {CompositeNavigationProp } from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 import colors from "../constants/colors";
 import Card from '../components/Card';
+import Categories from '../components/Categories';
+import {RootRoutes} from '../navigation/index';
+import {MainNavigatorRoutes} from '../navigation/Main';
 
 const {width} = Dimensions.get('window')
 
@@ -21,32 +27,41 @@ const data = [
 const categories = [
     {
         id: "newin",
-        ttle: "New In",
+        title: "New In",
         color: "#FFDDDD",
     },
     {
         id: "summer",
-        ttle: "Summer",
+        title: "Summer",
         color: "#BEECC4",
     },
     {
         id: "activeWear",
-        ttle: "Active Wear",
+        title: "Active Wear",
         color: "#BFEAF5",
     },
     {
         id: "outlet",
-        ttle: "Outlet",
+        title: "Outlet",
         color: "#F1E0FF",
     },
     {
         id: "accessories",
-        ttle: "Accessories",
+        title: "Accessories",
         color: "#FFE8E9",
     }
 ]
 
-const HomeScreen = () => {
+type HomeScreenNavigationProps = CompositeNavigationProp<
+DrawerNavigationProp<MainNavigatorRoutes, 'OutfitIdeas'>,
+  StackNavigationProp<RootRoutes>
+>
+
+interface HomeScreenProps {
+    navigation: HomeScreenNavigationProps
+}
+
+const HomeScreen = ({navigation}:HomeScreenProps ) => {
     const [position, setPosition] = useState(0)
     const swipe = () => {
         setPosition(prev => prev + 1)
@@ -56,9 +71,12 @@ const HomeScreen = () => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerContent}>
-                    <Icon name="menu" size={25} color={colors.greyThree} onPress={() => true}/>
+                    <Icon name="menu" size={25} color={colors.greyThree} onPress={() => navigation.openDrawer()}/>
                     <Text style={{color: colors.greyThree}}>OUTFIT IDEAS</Text>
                     <Icon name="shopping-bag" size={25} color={colors.greyThree}/>
+                </View>
+                <View style={{marginTop: 20}}>
+                   <Categories data={categories} />
                 </View>
             </View>
             <View style={styles.body}>

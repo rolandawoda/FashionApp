@@ -1,9 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+
 import colors from '../../constants/colors';
+import {MainNavigatorRoutes} from '../Main';
 
 export type itemType = {
-    label: string
+    label: string,
+    screen: keyof  MainNavigatorRoutes,
+    icon: string,
+    color: string
 
 }
 
@@ -11,12 +18,13 @@ interface DrawerItemProps {
     item: itemType
 }
 
-const DrawerItem = ({item}: DrawerItemProps) => {
+const DrawerItem = ({item: {label, screen, color}}: DrawerItemProps) => {
+    const {navigate} = useNavigation<DrawerNavigationProp<MainNavigatorRoutes, "FavouriteOutfits">>()
     return (
-        <TouchableOpacity style={styles.container}>
-            <View style={styles.icon} />
+        <TouchableOpacity style={styles.container} onPress={() => navigate(screen)}>
+            <View style={[styles.icon, {backgroundColor: color}]} />
 
-            <Text>{item.label}</Text>
+            <Text>{label}</Text>
         </TouchableOpacity>
     )
 }

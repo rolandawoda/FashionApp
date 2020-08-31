@@ -13,22 +13,40 @@ const DRAWER_WIDTH = width * 0.7
 
 const navItems: itemType[] = [
     {
-        label: "Outfit Ideas"
+        label: "Outfit Ideas",
+        screen: 'OutfitIdeas',
+        icon: "zap",
+        color: "skyblue"
     },
     {
-        label: "Favourite Outfits"
+        label: "Favourite Outfits",
+        screen: "FavouriteOutfits",
+        icon: "heart",
+        color: "orange"
     },
     {
-        label: "Edit Profile"
+        label: "Edit Profile",
+        screen: "FavouriteOutfits",
+        icon: "user",
+        color: "yellow"
     },
     {
-        label: "Transaction History"
+        label: "Transaction History",
+        screen: "FavouriteOutfits",
+        icon: "clock",
+        color: "pink"
     },
     {
-        label: "Notifications Settings"
+        label: "Notifications Settings",
+        screen: "FavouriteOutfits",
+        icon: "settings",
+        color: "violet"
     },
     {
-        label: "Logout"
+        label: "Logout",
+        screen: "FavouriteOutfits",
+        icon: "log-out",
+        color: "black"
     }
 ]
 
