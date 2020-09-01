@@ -8,7 +8,7 @@ import MainNavigator from './Main';
 
 export type RootRoutes = {
     Onboarding: undefined;
-    Home: undefined
+    Home: undefined;
 }
 
 const AppRootStack = createStackNavigator<RootRoutes>()

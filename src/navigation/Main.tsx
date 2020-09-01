@@ -25,8 +25,8 @@ const MainNavigator = () => {
         }}
         drawerContent={(props) => <DrawerContent {...props}/>} 
       >
-        <MainDrawer.Screen name="FavouriteOutfits" component={FavouritesScreen} />
         <MainDrawer.Screen name="OutfitIdeas" component={HomeScreen} />
+        <MainDrawer.Screen name="FavouriteOutfits" component={FavouritesScreen} />
       </MainDrawer.Navigator>
   );
 }
